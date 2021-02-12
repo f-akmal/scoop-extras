@@ -9,11 +9,21 @@
             "hash": "8B4A3D4C8D18DA10FD11558BD6C8CF195D931576D6E07369E7AC99BA9BE7C4C4"
         }
     },
-    "extract_dir": "PowerToys",
-    "shortcuts": [
-        [
-            "PowerToys.exe",
-            "PowerToys"
+    "installer": {
+        "args": [
+            "--silent",
+            "--install_dir \"$dir\""
         ]
-    ]
+    },
+    "uninstaller": {
+        "script": "(Get-WmiObject Win32_Product | Where-Object Name -Eq 'PowerToys (Preview)').uninstall()"
+    },
+    "checkver": "github",
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/microsoft/PowerToys/releases/download/v$version/PowerToysSetup-$version-x64.exe"
+            }
+        }
+    }
 }
